@@ -1,18 +1,12 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.8)
 project(xela_models)
 
-find_package(catkin REQUIRED)
+# Search ROS2 build tools
+find_package(ament_cmake REQUIRED)
 
-catkin_package()
+install(
+  DIRECTORY urdf mesh rviz launch
+  DESTINATION share/${PROJECT_NAME}
+)
 
-install(DIRECTORY rviz
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
-install(DIRECTORY urdf
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
-install(DIRECTORY launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
-install(DIRECTORY mesh
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+ament_package()

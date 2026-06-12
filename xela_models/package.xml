@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
-<package format="2">
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
   <name>xela_models</name>
-  <version>1.2.0</version>
-  <description>The XELA Sensor Models</description>
+  <version>1.0.0</version>
+  <description>The XELA Sensor Models ( Ros2 Adapted )</description>
+  <maintainer email="tuo@email.com">Tuo Nome</maintainer>
+  <license>BSD</license>
 
-  <maintainer email="matthias@xelarobotics.com">Matt</maintainer>
-  <license>GPLv3</license>
-  <url type="website">http://xelarobotics.com</url>
-  <author email="matthias@xelarobotics.com">Matt</author>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher_gui</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>xacro</exec_depend>
 
   <export>
-
+    <build_type>ament_cmake</build_type>
   </export>
 </package>
