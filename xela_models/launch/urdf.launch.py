@@ -15,7 +15,7 @@ def generate_launch_description():
         default_value='4x4',
         description='Model name (e.g., 4x4, 1x6, aftc)'
     )
-        # Argument to enable/disable the joint sliders GUI
+    # Argument to enable/disable the joint sliders GUI
     gui_arg = DeclareLaunchArgument(
         'gui',
         default_value='true',

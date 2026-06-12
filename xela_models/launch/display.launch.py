@@ -3,16 +3,23 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration, Command
+from launch.conditions import IfCondition, UnlessCondition
 from launch_ros.actions import Node
 
 def generate_launch_description():
     pkg_share = get_package_share_directory('xela_models')
     
-    # Arguments to select the model (default is your uSP44 / 4x4)
+    ## Argument to select the model
     model_arg = DeclareLaunchArgument(
         'model',
         default_value='4x4',
         description='Model name (e.g., 4x4, 1x6, aftc)'
+    )
+    # Argument to enable/disable the joint sliders GUI
+    gui_arg = DeclareLaunchArgument(
+        'gui',
+        default_value='false',
+        description='Show the joint_state_publisher GUI (true/false)'
     )
     
     # Generate the robot_description "on the fly" by converting the xacro file
@@ -32,11 +39,19 @@ def generate_launch_description():
         parameters=[{'robot_description': robot_description_content}]
     )
     
-    # Node Joint State Publisher GUI
+    # Node Joint State Publisher with Gui
     joint_state_publisher_gui_node = Node(
         package='joint_state_publisher_gui',
         executable='joint_state_publisher_gui',
-        name='joint_state_publisher_gui'
+        condition=IfCondition(LaunchConfiguration('gui'))
+    )
+    
+    # Node Joint State Publisher with Real Sensor Data
+    joint_state_publisher_node = Node(
+        package='xela_models',
+        executable='xela_joint_bridge.py',
+        name='xela_joint_bridge',
+        condition=UnlessCondition(LaunchConfiguration('gui'))
     )
     
     # Node RViz2
@@ -51,7 +66,9 @@ def generate_launch_description():
     
     return LaunchDescription([
         model_arg,
+        gui_arg,
         robot_state_publisher_node,
         joint_state_publisher_gui_node,
+        joint_state_publisher_node,
         rviz_node
     ])
