@@ -12,6 +12,7 @@ install(
 install(PROGRAMS
   scripts/xela_image_viz.py
   scripts/xela_joint_bridge.py
+  scripts/fake_xela_joint_bridge.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

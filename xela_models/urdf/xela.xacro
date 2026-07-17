@@ -52,13 +52,13 @@
     </link>
 
     <link name="${sequence}_base2x">
-      <visual>
+      <!-- <visual>
         <geometry>
           <sphere radius="0.0001"/>
         </geometry> 
         <origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
         <material name="${col}"/>
-      </visual> 
+      </visual>  -->
       <collision>
         <geometry>
           <sphere radius="0.0001"/>
@@ -67,13 +67,13 @@
     </link>
 
     <link name="${sequence}_x2y">
-      <visual>
+      <!-- <visual>
         <geometry>
           <sphere radius="0.0001"/>
         </geometry> 
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
         <material name="${col}"/>
-      </visual> 
+      </visual>  -->
       <collision>
         <geometry>
           <sphere radius="0.0001"/>
